@@ -22,3 +22,9 @@
 {#each items as item}
 	<button>{item}</button>
 {/each}
+
+<h2>D. Inline elements both before and after</h2>
+
+<button>0</button>{#each items as item}
+	<button>{item}</button>
+{/each}<button>4</button>
