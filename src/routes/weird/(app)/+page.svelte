@@ -1,4 +1,4 @@
-<h1>Normal Stacktrace</h1>
+<h1>Weird Stacktrace</h1>
 <p>This page intentionally triggers a SvelteKit error. (Check the browser tools dev console.)</p>
 
 <ul>
