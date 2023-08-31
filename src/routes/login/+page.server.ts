@@ -1,7 +1,8 @@
 import { redirect } from '@sveltejs/kit';
 
 import { PUBLIC_USERFRONT_GLOBAL_TENANT } from '$env/static/public';
-import { USERFRONT_API_KEY } from '$env/static/private';
+
+import { callUserFrontApi } from '$lib/common';
 
 const SECONDS_PER_DAY = 24 * 60 * 60;
 
@@ -19,9 +20,7 @@ export const load = async ({ url, cookies }) => {
 		};
 
 		try {
-			const { tokens } = (await login(payload)) as {
-				tokens: Record<string, { value: string; cookieOptions: { expires: number } }>;
-			};
+			const { tokens } = (await login(payload)) as LoginResults;
 
 			['access', 'id', 'refresh'].forEach((name) => {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
@@ -43,31 +42,11 @@ export const load = async ({ url, cookies }) => {
 	return {};
 };
 
+type LoginResults = {
+	tokens: Record<string, { value: string; cookieOptions: { expires: number } }>;
+};
+
 async function login(payload: unknown): Promise<unknown> {
 	const url = `https://api.userfront.com/v0/auth/link`;
-	const options = {
-		method: 'PUT',
-		headers: {
-			'Content-Type': 'application/json',
-			origin: 'http://localhost:5173',
-			Authorization: `Bearer ${USERFRONT_API_KEY}`
-		},
-		body: JSON.stringify(payload)
-	};
-
-	const response = await fetch(url, options);
-
-	if (response.status !== 200) {
-		const json = await response.json();
-		console.log('error', { json });
-
-		const errorMessage =
-			`${json.statusCode} (${json.error.type}): ${json.message}\n\n` +
-			`PUT ${url} payload = ${JSON.stringify(payload, null, 4)}`;
-		throw new Error(errorMessage);
-	}
-
-	const json = await response.json();
-	console.log('success', { json });
-	return json;
+	return await callUserFrontApi(url, payload);
 }
