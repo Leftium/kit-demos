@@ -19,7 +19,9 @@ export const load = async ({ url, cookies }) => {
 		};
 
 		try {
-			const { tokens } = await login(payload);
+			const { tokens } = (await login(payload)) as {
+				tokens: Record<string, { value: string; cookieOptions: { expires: number } }>;
+			};
 
 			['access', 'id', 'refresh'].forEach((name) => {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
@@ -41,7 +43,7 @@ export const load = async ({ url, cookies }) => {
 	return {};
 };
 
-async function login(payload) {
+async function login(payload: unknown): Promise<unknown> {
 	const url = `https://api.userfront.com/v0/auth/link`;
 	const options = {
 		method: 'PUT',
@@ -67,4 +69,5 @@ async function login(payload) {
 
 	const json = await response.json();
 	console.log('success', { json });
+	return json;
 }

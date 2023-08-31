@@ -18,7 +18,7 @@
 			});
 		} catch (error) {
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			errorMessage = error.message;
+			errorMessage = (error as Error).message;
 		}
 	}
 </script>
