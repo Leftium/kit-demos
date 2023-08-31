@@ -5,8 +5,8 @@ export async function callUserFrontApi(url: string, payload: unknown, optionsArg
 	const options = {
 		method: 'PUT',
 		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${USERFRONT_API_KEY}`
+			'Content-Type': 'application/json'
+			//Authorization: `Bearer ${USERFRONT_API_KEY}`
 		},
 		body: JSON.stringify(payload),
 		...optionsArg
