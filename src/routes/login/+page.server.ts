@@ -20,14 +20,12 @@ export const load = async ({ url, cookies }) => {
 		};
 
 		try {
-			const { tokens } = (await login(payload)) as LoginResults;
+			const { tokens } = (await login(payload, { origin: url.origin })) as LoginResults;
 
 			['access', 'id', 'refresh'].forEach((name) => {
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
 				cookies.set(`${name}.${PUBLIC_USERFRONT_GLOBAL_TENANT}`, tokens[name].value, {
 					path: '/',
 					httpOnly: false,
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 					maxAge: tokens[name].cookieOptions.expires * SECONDS_PER_DAY
 				});
 			});
@@ -35,7 +33,7 @@ export const load = async ({ url, cookies }) => {
 			console.log(error);
 			throw new Error('NO LOGIN SORRY');
 		}
-		console.log('Redirect to home page.');
+		console.log('Login success... redirecting to home page.');
 		throw redirect(302, '/');
 	}
 
@@ -46,7 +44,7 @@ type LoginResults = {
 	tokens: Record<string, { value: string; cookieOptions: { expires: number } }>;
 };
 
-async function login(payload: unknown): Promise<unknown> {
+async function login(payload: unknown, options: unknown): Promise<unknown> {
 	const url = `https://api.userfront.com/v0/auth/link`;
-	return await callUserFrontApi(url, payload);
+	return await callUserFrontApi(url, payload, options);
 }

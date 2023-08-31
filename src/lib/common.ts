@@ -1,16 +1,22 @@
 import { USERFRONT_API_KEY } from '$env/static/private';
 
-export async function callUserFrontApi(url: string, payload: unknown, optionsArg = {}) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function callUserFrontApi(url: string, payload: unknown, optionsArg: any = {}) {
 	const options = {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
-			origin: 'http://localhost:5173',
 			Authorization: `Bearer ${USERFRONT_API_KEY}`
 		},
 		body: JSON.stringify(payload),
 		...optionsArg
 	};
+	if (options.origin) {
+		options.headers.origin = options.origin;
+		delete options.origin;
+	}
+	console.log('url = ', url);
+	console.log('options =', options);
 
 	const response = await fetch(url, options);
 	const json = await response.json();
