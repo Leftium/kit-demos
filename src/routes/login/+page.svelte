@@ -1,14 +1,15 @@
 <script lang="ts">
 	import Userfront from '@userfront/core';
 
-	import { page } from '$app/stores';
-
 	import { PUBLIC_USERFRONT_GLOBAL_TENANT } from '$env/static/public';
 
 	let errorMessage = '';
 
-	const uuid = $page.url.searchParams.get('uuid');
-	const token = $page.url.searchParams.get('token');
+	let results = {};
+
+	// bindings
+	let email = 'vee@mailinator.com';
+	let password = 'testmodepassword';
 
 	async function handleGoogleLogin() {
 		await Userfront.init(PUBLIC_USERFRONT_GLOBAL_TENANT);
@@ -17,15 +18,37 @@
 				method: 'google'
 			});
 		} catch (error) {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			errorMessage = (error as Error).message;
+		}
+	}
+
+	async function handlePasswordLogin() {
+		await Userfront.init(PUBLIC_USERFRONT_GLOBAL_TENANT);
+		try {
+			await Userfront.login({
+				method: 'password',
+				email,
+				password
+			});
+		} catch (error) {
 			errorMessage = (error as Error).message;
 		}
 	}
 </script>
 
-<button
-	class="variant-ghost-secondary btn my-2 w-full font-semibold"
-	on:click|preventDefault={handleGoogleLogin}
+<label>Email <input bind:value={email} /></label><label>Email <input bind:value={password} /></label
 >
-	Login with Google
-</button>
+
+<button on:click|preventDefault={handlePasswordLogin}> Password Login </button>
+
+<hr />
+
+<button on:click|preventDefault={handleGoogleLogin}> Google Login </button>
+
+<hr />
+
+<pre>{JSON.stringify({ errorMessage }, null, 4)}</pre>
+
+<hr />
+
+<pre>{JSON.stringify({ results }, null, 4)}</pre>

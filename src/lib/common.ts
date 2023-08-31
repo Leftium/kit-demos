@@ -23,8 +23,9 @@ export async function callUserFrontApi(url: string, payload: unknown, optionsArg
 
 	if (response.status !== 200) {
 		console.log('ERROR!', { json });
-		const errorMessage = `${json.statusCode} (${json.error.type}): ${json.message}\n
-			${options.method} ${url} payload = ${JSON.stringify(payload, null, 4)}`;
+		const errorMessage =
+			`${json.statusCode} (${json.error.type}): ${json.message}\n\n` +
+			`${options.method} ${url} payload = ${JSON.stringify(payload, null, 4)}`;
 		throw new Error(errorMessage);
 	}
 	console.log('SUCCESS', { json });
