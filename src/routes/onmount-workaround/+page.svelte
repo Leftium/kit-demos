@@ -6,8 +6,14 @@
 	import 'vidstack/player/ui';
 
 	import type { MediaPlayerElement } from 'vidstack/elements';
+	import { onMount } from 'svelte';
 
 	let player: MediaPlayerElement;
+	let mounted = false;
+
+	onMount(() => {
+		mounted = true;
+	});
 </script>
 
 <a href="/">No workaround</a> <a href="/onmount-workaround">onMount workaround</a>
@@ -25,7 +31,9 @@
 	title="Sprite Fight"
 	src="https://stream.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/low.mp4"
 >
-	<media-provider />
+	{#key mounted}
+		<media-provider />
+	{/key}
 </media-player>
 
 <style>
