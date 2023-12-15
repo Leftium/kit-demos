@@ -2,9 +2,9 @@
 	export let form;
 </script>
 
-<h1>With ISR</h1>
+<h1>With ISR default action</h1>
 
-<form method="POST" action="?/myAction">
+<form method="POST">
 	<button>Submit</button>
 </form>
 

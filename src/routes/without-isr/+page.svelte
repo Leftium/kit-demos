@@ -2,7 +2,7 @@
 	export let form;
 </script>
 
-<h1>With ISR</h1>
+<h1>Without ISR</h1>
 
 <form method="POST" action="?/myAction">
 	<button>Submit</button>

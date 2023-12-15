@@ -11,7 +11,7 @@ export const load = async () => {
 };
 
 export const actions = {
-	myAction: async () => {
+	default: async () => {
 		return { success: true };
 	}
 };
