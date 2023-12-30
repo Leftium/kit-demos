@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '../app.css';
 	import { onMount } from 'svelte';
 	import { Loader } from '@googlemaps/js-api-loader';
 
@@ -20,4 +21,4 @@
 	});
 </script>
 
-<div bind:this={mapElement} style:height={'500px'} style:width={'800px'} />
+<div bind:this={mapElement} style:height={'100%'} style:width={'100%'} />
