@@ -21,7 +21,3 @@
 </script>
 
 <div bind:this={mapElement} style:height={'500px'} style:width={'800px'} />
-
-<svelte:head>
-	<script async src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-</svelte:head>
