@@ -3,12 +3,14 @@
 	import { onMount } from 'svelte';
 	import { Loader } from '@googlemaps/js-api-loader';
 
+	import { PUBLIC_GOOGLEMAPS_API_KEY } from '$env/static/public';
+
 	// Bindings
 	let mapElement: HTMLElement;
 
 	onMount(async function () {
 		const loader = new Loader({
-			apiKey: 'AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg',
+			apiKey: PUBLIC_GOOGLEMAPS_API_KEY,
 			version: 'weekly'
 		});
 
