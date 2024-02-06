@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 devDependencies:
+  '@picocss/pico':
+    specifier: 2.0.0-rc4
+    version: 2.0.0-rc4
   '@sveltejs/adapter-auto':
     specifier: ^3.0.0
     version: 3.1.1(@sveltejs/kit@2.5.0)
@@ -385,6 +388,11 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
+    dev: true
+
+  /@picocss/pico@2.0.0-rc4:
+    resolution: {integrity: sha512-tiDdkvIOUlO8FDOihhHMRY0phOQAsIeIRqF/aoO0npvFhSxK9ICvez/7Vqzc+Ixz8MXD/9fpKc9eGS2k0slqDQ==}
+    engines: {node: '>=18.19.0'}
     dev: true
 
   /@polka/url@1.0.0-next.24:
