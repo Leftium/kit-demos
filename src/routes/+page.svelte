@@ -1,2 +1,11 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import { moduleA } from '$lib/module-a';
+	import { moduleB } from '$lib/module-b';
+	import { PUBLIC_ENV } from '$env/static/public';
+</script>
+
+<p>{moduleA}</p>
+
+<p>{moduleB}</p>
+
+<p>{PUBLIC_ENV}</p>
