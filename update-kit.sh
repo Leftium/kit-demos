@@ -4,12 +4,14 @@
 find . -not -path './.git/*' -not -name '.git' -not -name 'update-kit.sh' -delete
 
 # Install latest Kit to tmp:
-npm init @svelte-add/kit@latest kit-demos -- --install false --with typescript+eslint+prettier
+pnpx sv create --no-install --template minimal --types ts --no-add-ons tmp-kit
+pnpx sv add eslint --no-install --cwd tmp-kit
+pnpx sv add prettier --no-install --cwd tmp-kit
 
 # Move Kit to current folder:
-mv -f kit-demos/.* . # dot files.
-mv kit-demos/* .     # everything else.
-rmdir kit-demos
+mv -f tmp-kit/.* . # dot files.
+mv tmp-kit/* .     # everything else.
+rmdir tmp-kit
 
 pnpm install
 
