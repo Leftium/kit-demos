@@ -7,6 +7,7 @@ find . -not -path './.git/*' -not -name '.git' -not -name 'update-kit.sh' -delet
 pnpx sv create --no-install --template minimal --types ts --no-add-ons tmp-kit
 pnpx sv add eslint --no-install --cwd tmp-kit
 pnpx sv add prettier --no-install --cwd tmp-kit
+pnpx sv add mdsvex --no-install --cwd tmp-kit
 
 # Move Kit to current folder:
 mv -f tmp-kit/.* . # dot files.
