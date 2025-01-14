@@ -1,0 +1,11 @@
+/* Simple Dark mode (only background): */
+@media only screen and (prefers-color-scheme: dark) {
+    :root {
+        background-color: #13171f;
+    }
+}
+
+/* Simple styling: */
+h1 {
+	color: #d93526;
+}
