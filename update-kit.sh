@@ -5,14 +5,11 @@ find . -not -path './.git/*' -not -name '.git' -not -name 'update-kit.sh' -delet
 
 # Install latest Kit to tmp:
 pnpx sv create --no-install --template minimal --types ts --no-add-ons tmp-kit
-pnpx sv add eslint --no-install --cwd tmp-kit
-pnpx sv add prettier --no-install --cwd tmp-kit
-pnpx sv add mdsvex --no-install --cwd tmp-kit
+pnpx sv add eslint prettier devtools-json --no-install --no-git-check --cwd tmp-kit
 
 # Move Kit to current folder:
-mv -f tmp-kit/.* . # dot files.
-mv tmp-kit/* .     # everything else.
+shopt -s dotglob nullglob extglob
+mv tmp-kit/!(.|..) .
 rmdir tmp-kit
 
 pnpm install
-
