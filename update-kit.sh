@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Remove everything except .git history:
 find . -not -path './.git/*' -not -name '.git' -not -name 'update-kit.sh' -delete
 
