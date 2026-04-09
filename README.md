@@ -15,7 +15,7 @@ To recreate this project with the same configuration:
 
 ```sh
 # recreate this project
-npx sv@0.13.0 create --template minimal --types ts --no-install tmp-kit
+npx sv@0.15.0 create --template minimal --types ts --no-install tmp-kit
 ```
 
 ## Developing
