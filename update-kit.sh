@@ -5,13 +5,12 @@ set -e
 # Remove everything except .git history:
 find . -not -path './.git/*' -not -name '.git' -not -name 'update-kit.sh' -delete
 
-# Install latest Kit to tmp:
-pnpx sv create --no-install --template minimal --types ts --no-add-ons tmp-kit
-pnpx sv add eslint prettier --no-install --no-git-check --cwd tmp-kit
+# Install latest Kit to temp folder:
+pnpm dlx sv create --template minimal --types ts --add prettier eslint --install pnpm kit-demos
 
 # Move Kit to current folder:
 shopt -s dotglob nullglob extglob
-mv tmp-kit/!(.|..) .
-rmdir tmp-kit
+mv kit-demos/!(.|..) .
+rmdir kit-demos
 
 pnpm install
