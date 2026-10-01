@@ -15,7 +15,21 @@ To recreate this project with the same configuration:
 
 ```sh
 # recreate this project
-pnpm dlx sv@0.16.2 create --template minimal --types ts --add prettier eslint --install pnpm kit-demos
+pnpm dlx sv@1.0.1 create --template minimal --types ts --add prettier eslint --install pnpm .
+```
+
+## Adding features
+
+Add features to your project with `sv add`:
+
+```sh
+npx sv add
+```
+
+For example, to add Tailwind CSS:
+
+```sh
+npx sv add tailwindcss
 ```
 
 ## Developing
