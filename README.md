@@ -15,7 +15,7 @@ To recreate this project with the same configuration:
 
 ```sh
 # recreate this project
-pnpm dlx sv@1.2.0 create --template minimal --types ts --add prettier eslint --install pnpm .
+pnpm dlx sv@1.3.0 create --template minimal --types ts --add prettier eslint --install pnpm .
 ```
 
 ## Adding features
